@@ -1,0 +1,116 @@
+body {
+	font-family: sans-serif;
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+	text-align: center; /* old IE fix */
+}
+
+#content {
+	width: 500px;
+	height: 500px;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	text-align: left;
+} 
+
+.empty_bars {
+	color: #aaa;
+}
+
+#current_network {
+	width: 490px;
+	height: 40px;
+	border: 1px solid black;
+	margin-top: 10px;
+	padding: 5px;
+	background-color: #dddddd;
+	margin-bottom: 5px;
+	line-height: 45px;
+	vertical-align: middle;
+}
+
+#current_name {
+	font-weight: bold;
+	display: inline-block;
+	width: 400px;
+	font-size: 1.5em;
+	margin-left: 20px;
+	line-height: normal;
+}
+
+#current_strength {
+	width: 50px;
+	display: inline-block;
+	font-weight: bold;
+	font-size: 1.5em;
+	line-height: normal;
+}
+
+#saved_networks {
+	width: 490px;
+	height: 100px;
+	border: 1px solid black;
+	margin-top: 10px;
+	padding: 5px;
+	overflow: scroll;
+}
+
+#networks {
+	width: 490px;
+	height: 200px;
+	border: 1px solid black;
+	margin-top: 10px;
+	padding: 5px;
+	overflow: scroll;
+}
+
+.network {
+	height: 40px;
+	background-color: #ccddee;
+	padding-left: 10px;
+	margin-bottom: 5px;
+	line-height: 45px;
+	vertical-align: middle;
+}
+
+.network:hover {
+	background-color: #aabbcc;
+}
+
+.network:nth-child(odd) {
+	background-color: #dddddd;
+}
+
+.network:nth-child(odd):hover {
+	background-color: #aabbcc;
+}
+
+.network_name {
+	font-weight: bold;
+	display: inline-block;
+	width: 300px;
+	font-size: 1.5em;
+	line-height: normal;
+}
+
+.network_encryption {
+	width: 100px;
+	display: inline-block;
+	line-height: normal;
+}
+
+.network_strength {
+	width: 30px;
+	display: inline-block;
+	font-weight: bold;
+	line-height: normal;
+}
+
+.network_connect {
+	display: none;
+	width: 400px;
+	margin-left: 30px;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<head>
+<title>Config</title>
+<link href="main.css" rel="stylesheet" type="text/css" />
+<!--<link rel="stylesheet" media="handheld" type="text/css" href="mobile.css" />-->
+<script>
+function toggle_connectform(network) {
+	network.style.height = "80px";
+    network.querySelector('.network_connect').style.display = 'block';
+}
+
+function reload_wifiscan() {
+	var request = new XMLHttpRequest();
+	request.open('GET', '/wifi-scan.tpl', true);
+
+	request.onload = function() {
+		if (request.status >= 200 && request.status < 400) {
+    		document.getElementById('networks').innerHTML = request.responseText;
+  		}
+	};
+	request.send();
+}
+
+function connect_wifi(myform) {
+	var request = new XMLHttpRequest();
+	request.open('POST', '/wifi-add.tpl', true);
+	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+	request.onload = function() {
+		if (request.responseText != 'OK\n') {
+			alert('Can\'t connect!')
+		}
+	};
+	request.send(new FormData(myform.parentElement))
+}
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function current_connection() {
+	var request = new XMLHttpRequest();
+	request.open('GET', '/wifi-status.tpl', true);
+
+	request.onload = function() {
+		if (request.status >= 200 && request.status < 400) {
+			if (request.responseText != 'ERROR\n') {
+				document.getElementById('current_network').innerHTML = request.responseText;
+				document.getElementById('current_network').style.backgroundColor = '#32cd32';
+			}
+			else {
+				document.getElementById('current_network').style.backgroundColor = '#ff0000';
+				document.getElementById('current_network').innerHTML = '<div id="current_name">Not connected!</div>'
+			}
+  		}
+	};
+	request.send();
+}
+
+function reload_savednetworks() {
+	var request = new XMLHttpRequest();
+	request.open('GET', '/wifi-saved.tpl', true);
+
+	request.onload = function() {
+		if (request.status >= 200 && request.status < 400) {
+			document.getElementById('saved_networks').innerHTML = request.responseText;
+  		}
+	};
+	request.send();
+}
+
+window.onload = async function() {
+  current_connection();
+  await sleep(1000);
+  reload_wifiscan();
+  await sleep(2000);
+  reload_savednetworks();
+};
+
+</script>
+</head>
+<body>
+<div id="content">
+	<span style="font-weight: bold;">Current networks</span>
+	<div id="current_network"></div>
+	<span style="font-weight: bold;">Available networks</span>
+	<div id="networks">
+	loading ...
+	</div>
+	<span style="font-weight: bold;">Saved networks</span>
+	<div id="saved_networks">
+	loading ...
+	</div>
+</div>
+</body>
+</html>
