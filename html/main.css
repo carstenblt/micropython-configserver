@@ -24,10 +24,10 @@ body {
 	width: 490px;
 	height: 40px;
 	border: 1px solid black;
-	margin-top: 10px;
+	margin-top: 5px;
+	margin-bottom: 20px;
 	padding: 5px;
 	background-color: #dddddd;
-	margin-bottom: 5px;
 	line-height: 45px;
 	vertical-align: middle;
 }
@@ -63,6 +63,7 @@ body {
 	height: 200px;
 	border: 1px solid black;
 	margin-top: 10px;
+	margin-bottom: 20px;
 	padding: 5px;
 	overflow: scroll;
 }
